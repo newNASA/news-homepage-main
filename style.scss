@@ -3,13 +3,20 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
-    border:  1px solid red;
+    // border:  1px solid red;
 }
 
 :root{
     --grey-text:hsl(236, 13%, 42%);
     --soft-red:hsl(5, 85%, 63%);
     --white:hsl(36, 100%, 99%);
+    --dark-blue:hsl(240, 100%, 5%);
+    --orange: #e9ab53;
+    --news-text:#898BA5;
+}
+
+li{
+    list-style: none;
 }
 
 body{
@@ -17,7 +24,6 @@ body{
     padding-right: 150px;
     background-color: var(--white);
 }
-
 
 header{
 
@@ -37,12 +43,22 @@ header{
                 color: var(--grey-text) ;
                 margin-left: 35px;
                 font-family:Arial, Helvetica, sans-serif;
+                transition: .5s;
+                &:hover{
+                    color: var(--soft-red);
+                }
+            }
+            button{
+                display: none;
+                outline:  none;
+                border:  none;
             }
         }
     }
 
     // center styles
     section{
+        gap: 30px;
         display: flex;
         .left{
             width: 68%;  
@@ -60,9 +76,10 @@ header{
                 .b_left{
                     h1{
                         width: 300px;
-                        line-height: 50px;
+                        line-height: 60px;
                         font-size: 50px;
                         font-family: 'Inter';
+                        height: 100%;
                         src: url(./assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
                     }
                 }
@@ -75,6 +92,7 @@ header{
                         line-height: 25px;
                         font-family: Arial, Helvetica, sans-serif;
                         color: var(--grey-text);
+                        letter-spacing: 1px;
                     }
                     a{
                         width: 185px;
@@ -83,14 +101,191 @@ header{
                         justify-content: center;
                         align-items: center;
                         text-decoration: none;
-                        // font-family: Arial, Helvetica, sans-serif;
                         color: var(--white);
                         background-color: var(--soft-red);
-                        // font-size: 1.2rem;
+                        margin-top: 25px;
                         letter-spacing: 4px;
+                        transition: .5s;
+                        text-transform: uppercase;
+                        &:hover{
+                            background-color: var(--dark-blue);
+                        }
                     }
                 }
             }
+        }
+
+        .right{
+            padding: 25px;
+            width: 32%;
+            background-color: var(--dark-blue);
+            h1{
+                color: var(--orange);
+                font-size: 2.5rem;
+                margin-bottom: 35px;    
+            }
+            a{
+                text-decoration: none;
+                color: var(--white);
+                font-size: 1.4rem;
+                transition: .5s;
+                &:hover{
+                    color: var(--orange);
+                }
+            }
+            p{
+                font-size: 15px;    
+                font-weight:100;
+                margin-top: 10px;
+                color: var(--news-text);
+                line-height: 25px;
+            }
+            hr{
+                margin-top: 35px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+footer{
+    margin-bottom: 50px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    .one, .two, .three{
+        padding: 5px;
+        width: 32%;
+        display: flex;
+        .left{
+            width: 100px;
+        }
+        .right{
+            padding-left: 20px;
+            width: calc(100% - 100px);
+            h1{
+                color: var(--grey-text);
+                margin-top: 5px;
+            }
+            h2{
+                margin-top: 15px;
+                font-size: 1.2rem;
+                transition: .5s;
+                &:hover{
+                    color: var(--soft-red);
+                }
+                cursor: pointer;
+            }
+            p{
+                font-size: 0.9rem;
+                margin-top: 5px;
+            }
+        }
+    }
+}
+
+@keyframes anim {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+
+.mobile-nav{
+    display: none;
+    width: 70%;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--white);
+    right: 0;
+    z-index: 100;
+    padding: 30px;
+    animation-name: anim;
+    animation-duration: .5s;
+    animation-iteration-count: 1;
+    
+    .top{
+        img{
+            float: right;
+        }
+    }
+    .bottom{
+        margin-top: 150px;
+        li{
+            margin-bottom: 20px;
+            a{
+                text-decoration: none;
+                color: var(--dark-blue);
+                font-family: Arial, Helvetica, sans-serif;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
+.hidden{
+    display: none;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: black; 
+    opacity: .5; 
+    z-index: 10;
+}
+
+@media screen and (max-width: 376px) {
+    body{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    header{
+        nav{
+            .right{
+                ul{
+                    display: none;
+                }
+                button{
+                    display: block;
+                }
+            }
+        }
+
+        section{
+            flex-direction: column;
+            .left, .right{
+                width: 100%;    
+            }
+            .left{
+                .top{
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+                .bottom{
+                    flex-direction: column;
+                    .b_left, .b_right{
+                        width: 100%;
+                    }
+                    .b_left{
+                        h1{
+                            width: 100%;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    footer{
+        flex-direction: column;
+        gap: 20px;
+        .one, .two, .three{
+            width: 100%;
         }
     }
 }
